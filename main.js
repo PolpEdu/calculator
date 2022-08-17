@@ -12,17 +12,14 @@ let oldHolder = '';
 buttons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         let value = e.currentTarget.textContent;
-        if (value === 'AC') {
-            clear()
-        } else if (!e.currentTarget.classList.contains('operator') && value !== '=') {
+        if (value === 'AC') clear()
+        else if (!e.currentTarget.classList.contains('operator') && value !== '=')
             appendNumber([result, holder], value)
-        } else if (e.currentTarget.classList.contains('operator') && activated) {
+        else if (e.currentTarget.classList.contains('operator') && activated) {
             addOperator(result, value);
             addOperator(holder, value);
             oldHolder = holder.textContent;
-        } else if (value === '=') {
-            renderResult([result, holder])
-        }
+        } else if (value === '=') renderResult([result, holder])
     })
 })
 

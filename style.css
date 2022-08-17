@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: #191d32;
+    height: 530px;
+    width: 400px;
+    display: grid;
+    grid-template-areas: 'result result result result';
+    color: white;
+    font-size: 32px;
+    padding: 30px;
+    font-family: 'Secular One', sans-serif;
+    border-radius: 16px;
+}
+
+.grid-element {
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: auto;
+    background-color: #293051;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #222844;
+    border-radius: 8px;
+}
+
+.equal {
+    background-color: #f96e46;
+}
+
+.operator {
+    background-color: #85cb33;
+    color: #171b27;
+}
+
+.clear {
+    background-color: #087f8c;
+}
+
+.result {
+    grid-area: result;
+    background-color: #282f44;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0 16px;
+    height: 100px;
+}

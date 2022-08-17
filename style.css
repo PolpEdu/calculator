@@ -48,17 +48,22 @@ body {
     background-color: #087f8c;
 }
 
-.result {
+.result-container {
     grid-area: result;
     background-color: #282f44;
     margin-bottom: 30px;
     display: flex;
-    justify-content: end;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end   ;
     padding: 0 16px;
     height: 100px;
 }
 
 .grid-element:hover {
     opacity: 0.5;
+}
+
+#operation {
+    font-size: 24px;
 }

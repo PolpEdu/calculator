@@ -1,42 +1,52 @@
-const buttons = document.querySelectorAll('.grid-element');
+const buttons = document.querySelectorAll('.element');
 const result = document.getElementById('result');
-const reset = document.getElementById('reset')
+const holder = document.getElementById('operation');
+
+const operators = ['−', '+', '×', '÷']
 
 // All buttons
 let op = 0;
 buttons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        let val = e.currentTarget.textContent;
-
-        if (val == 'AC') { // Check if operation is reset
+        let value = e.currentTarget.textContent;
+        if (value === 'AC') {
             result.textContent = '0';
+            holder.textContent = '';
             return;
+        } else if (!e.currentTarget.classList.contains('operator')) {
+            let hasOperator = operators.some((o) => result.textContent.includes(o));
+
+            if (result.textContent === '0') result.textContent = value;
+            else if (hasOperator) result.textContent = value;
+            else result.textContent += value;
+
+            if (holder.textContent === '0') holder.textContent = value;
+            else holder.textContent += value;
+
         } else if (e.currentTarget.classList.contains('operator')) {
-            let num1 = result.textContent.split(val)[0]
-            let num2 = result.textContent.split(val)[2]
-            result.textContent = checkOperation(val, num1, num2)
-            op++;
-        } else if (val == '=') {
-            console.log(eval(result.textContent.toString()))
-            return;
-        } else {
-            op = 0; // reset op >> see if used operator twice
+            addOperator(result, value);
+            addOperator(holder, value);
+        } else if (value === '=') {
+            holder.textContent += '='
+
         }
-
-        if (op > 1) return;
-
-        console.log(e.currentTarget.textContent)
-        if (result.textContent == 0) result.textContent = e.currentTarget.textContent;
-        else result.textContent += e.currentTarget.textContent;
     })
 })
 
-const checkOperation = (operation, num1, num2) => {
+const addOperator = (local, value) => {
+    let hasOperator = operators.some((o) => local.textContent.includes(o))
+    if (!hasOperator) local.textContent += value;
+    else {
+        local.textContent = local.textContent.replace(local.textContent[local.textContent.length - 1], value);
+    }
+}
+
+const doOperation = (operation, num1, num2) => {
     let res = 0;
-    if (operation == '+') res = add(num1, num2)
-    else if (operation == '-') res = minus(num1, num2)
-    else if (operation == 'x') res = multiply(num1, num2)
-    else if (operation == '/') res = reduce(num1, num2)
+    if (operation === '+') res = add(num1, num2)
+    else if (operation === '−') res = minus(num1, num2)
+    else if (operation === '×') res = multiply(num1, num2)
+    else if (operation === '÷') res = reduce(num1, num2)
     return res;
 }
 

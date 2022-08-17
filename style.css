@@ -11,7 +11,7 @@ body {
 
 .container {
     background-color: #191d32;
-    height: 530px;
+    height: 540px;
     width: 400px;
     display: grid;
     grid-template-areas: 'result result result result';
@@ -57,4 +57,8 @@ body {
     align-items: center;
     padding: 0 16px;
     height: 100px;
+}
+
+.grid-element:hover {
+    opacity: 0.5;
 }
